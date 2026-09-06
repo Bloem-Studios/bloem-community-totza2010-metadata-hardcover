@@ -1,0 +1,109 @@
+{
+  "plugin_id": "silo.metadata.hardcover",
+  "version": "0.1.0",
+  "checksum": "__CHECKSUM__",
+  "silo_api_version": "v1",
+  "presentation": {
+    "display_name": "Hardcover Metadata",
+    "summary": "Book metadata from Hardcover: authors, series, covers, publishers, and genres from one source.",
+    "description_markdown": "Enriches ebook and audiobook libraries from [Hardcover](https://hardcover.app) alone. One lookup returns the title and subtitle, authors and other contributors, the series name and position, the release date, the cover, the publisher, the language, the ISBNs, the page count, and Hardcover's genres, moods, tags, content warnings, and rating.\n\nSearches run against Hardcover's own search index, so a title, an author, or an ISBN all resolve. Existing items are matched by Hardcover ID, slug, ISBN-13, ISBN-10, or ASIN.\n\nRequires a free Hardcover account and an API token.",
+    "setup_markdown": "1. Sign in at [hardcover.app](https://hardcover.app) and open **Account settings → Hardcover API**.\n2. Create a new API key and copy the token.\n3. Paste it into **API token** below.\n4. Add **Hardcover Metadata** to an ebook or audiobook library's metadata provider chain.\n\nThe plugin makes no requests until a token is set. Hardcover's free plan allows 60 requests per minute and 5,000 per day; the plugin paces itself to stay inside that.",
+    "homepage_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover",
+    "source_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover",
+    "support_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover/issues",
+    "changelog_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover/releases",
+    "publisher_name": "totza2010",
+    "publisher_url": "https://github.com/totza2010",
+    "license_spdx": "Apache-2.0"
+  },
+  "supported_platforms": [
+    {
+      "os": "darwin",
+      "arch": "arm64"
+    },
+    {
+      "os": "linux",
+      "arch": "amd64"
+    },
+    {
+      "os": "linux",
+      "arch": "arm64"
+    }
+  ],
+  "capabilities": [
+    {
+      "type": "metadata_provider.v1",
+      "id": "hardcover",
+      "display_name": "Hardcover",
+      "description": "Metadata provider for books and audiobooks, backed entirely by the Hardcover GraphQL API.",
+      "metadata": {
+        "default_priority": {
+          "ebook": 1,
+          "audiobook": 1
+        }
+      }
+    }
+  ],
+  "global_config_schema": [
+    {
+      "key": "api_key",
+      "title": "API token",
+      "description": "Hardcover personal access token. Create one under Account settings → Hardcover API. The plugin makes no requests without it.",
+      "json_schema": "{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"}},\"required\":[\"value\"]}",
+      "admin_form": {
+        "fields": [
+          {
+            "key": "value",
+            "label": "API token",
+            "control": "ADMIN_FORM_CONTROL_PASSWORD"
+          }
+        ]
+      }
+    },
+    {
+      "key": "search_limit",
+      "title": "Search results",
+      "description": "How many candidates a search returns. Defaults to 20.",
+      "json_schema": "{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50}}}",
+      "admin_form": {
+        "fields": [
+          {
+            "key": "value",
+            "label": "Results per search",
+            "control": "ADMIN_FORM_CONTROL_NUMBER"
+          }
+        ]
+      }
+    },
+    {
+      "key": "detailed_search",
+      "title": "Detailed search results",
+      "description": "Load publisher, language, and full series data for every search result. Costs one extra Hardcover request per search; the details are always loaded when an item is matched.",
+      "json_schema": "{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"boolean\"}}}",
+      "admin_form": {
+        "fields": [
+          {
+            "key": "value",
+            "label": "Load full details in search",
+            "control": "ADMIN_FORM_CONTROL_SWITCH"
+          }
+        ]
+      }
+    },
+    {
+      "key": "default_language",
+      "title": "Preferred edition language",
+      "description": "Language code such as `en` or `th`. Used to pick which edition supplies the publisher, ISBN, and format when a book has several. The library's own language wins when it is set.",
+      "json_schema": "{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"}}}",
+      "admin_form": {
+        "fields": [
+          {
+            "key": "value",
+            "label": "Language code",
+            "control": "ADMIN_FORM_CONTROL_TEXT"
+          }
+        ]
+      }
+    }
+  ]
+}

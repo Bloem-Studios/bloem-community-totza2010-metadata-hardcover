@@ -1,0 +1,51 @@
+{
+  "data": {
+    "search": {
+      "ids": [240029, 97844],
+      "results": {
+        "found": 2,
+        "page": 1,
+        "hits": [
+          {
+            "document": {
+              "id": "240029",
+              "title": "The Way of Kings",
+              "subtitle": "Book One of the Stormlight Archive",
+              "description": "Roshar is a world of stone and storms.",
+              "slug": "the-way-of-kings",
+              "author_names": ["Brandon Sanderson"],
+              "genres": ["Fantasy", "Epic Fantasy"],
+              "moods": ["Adventurous"],
+              "tags": ["Magic System"],
+              "content_warnings": ["War"],
+              "series_names": ["The Stormlight Archive", "The Cosmere"],
+              "featured_series": {"name": "The Stormlight Archive"},
+              "featured_series_position": 1,
+              "image": {"url": "https://images.hardcover.app/way-of-kings.jpg"},
+              "isbns": ["9780765326355", "0765326353"],
+              "pages": 1007,
+              "rating": 4.42,
+              "ratings_count": 18422,
+              "release_year": 2010,
+              "compilation": false
+            }
+          },
+          {
+            "document": {
+              "id": "97844",
+              "title": "Project Hail Mary",
+              "slug": "project-hail-mary",
+              "author_names": ["Andy Weir"],
+              "genres": ["Science Fiction"],
+              "image": {"url": "https://images.hardcover.app/project-hail-mary.jpg"},
+              "isbns": ["9780593135204"],
+              "pages": 476,
+              "rating": 4.51,
+              "release_year": 2021
+            }
+          }
+        ]
+      }
+    }
+  }
+}

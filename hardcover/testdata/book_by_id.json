@@ -1,0 +1,233 @@
+{
+  "data": {
+    "books_by_pk": {
+      "id": 240029,
+      "slug": "the-way-of-kings",
+      "title": "The Way of Kings",
+      "subtitle": "Book One of the Stormlight Archive",
+      "description": "Roshar is a world of stone and storms.",
+      "release_date": "2010-08-31",
+      "release_year": 2010,
+      "pages": 1007,
+      "audio_seconds": null,
+      "compilation": false,
+      "rating": 4.42,
+      "ratings_count": 18422,
+      "alternative_titles": [
+        "El camino de los reyes"
+      ],
+      "cached_tags": {
+        "Genre": [
+          {
+            "tag": "Fantasy",
+            "category": "Genre",
+            "count": 900
+          },
+          {
+            "tag": "Epic Fantasy",
+            "category": "Genre",
+            "count": 410
+          }
+        ],
+        "Mood": [
+          {
+            "tag": "Adventurous",
+            "category": "Mood",
+            "count": 220
+          }
+        ],
+        "Tag": [
+          {
+            "tag": "Magic System",
+            "category": "Tag",
+            "count": 120
+          }
+        ],
+        "Content Warning": [
+          {
+            "tag": "War",
+            "category": "Content Warning",
+            "count": 30
+          }
+        ]
+      },
+      "image": {
+        "url": "https://images.hardcover.app/way-of-kings.jpg"
+      },
+      "contributions": [
+        {
+          "contribution": null,
+          "author": {
+            "id": 34211,
+            "name": "Brandon Sanderson",
+            "image": {
+              "url": "https://images.hardcover.app/sanderson.jpg"
+            }
+          }
+        }
+      ],
+      "book_series": [
+        {
+          "featured": true,
+          "position": 1,
+          "series": {
+            "id": 4110,
+            "name": "The Stormlight Archive"
+          }
+        },
+        {
+          "featured": false,
+          "position": 5.5,
+          "series": {
+            "id": 9001,
+            "name": "The Cosmere"
+          }
+        }
+      ],
+      "default_ebook_edition": {
+        "id": 771001,
+        "isbn_10": "0765365278",
+        "isbn_13": "9780765365279",
+        "asin": "B003P2WO5E",
+        "edition_format": "Kindle Edition",
+        "physical_format": null,
+        "pages": 1007,
+        "audio_seconds": null,
+        "release_date": "2010-08-31",
+        "publisher": {
+          "name": "Tor Books"
+        },
+        "language": {
+          "code2": "en",
+          "code3": "eng",
+          "language": "English"
+        },
+        "image": {
+          "url": "https://images.hardcover.app/way-of-kings-ebook.jpg"
+        },
+        "contributions": []
+      },
+      "default_physical_edition": {
+        "id": 771002,
+        "isbn_10": "0765326353",
+        "isbn_13": "9780765326355",
+        "asin": null,
+        "edition_format": "Hardcover",
+        "physical_format": "Hardcover",
+        "pages": 1007,
+        "audio_seconds": null,
+        "release_date": "2010-08-31",
+        "publisher": {
+          "name": "Tor Books"
+        },
+        "language": {
+          "code2": "en",
+          "code3": "eng",
+          "language": "English"
+        },
+        "image": null,
+        "contributions": [
+          {
+            "contribution": "Author",
+            "author": {
+              "id": 34211,
+              "name": "Brandon Sanderson",
+              "image": null
+            }
+          }
+        ]
+      },
+      "default_audio_edition": {
+        "id": 771003,
+        "isbn_10": null,
+        "isbn_13": "9781441880413",
+        "asin": "B0043GXMLK",
+        "edition_format": "Audible Audio",
+        "physical_format": null,
+        "pages": null,
+        "audio_seconds": 161640,
+        "release_date": "2010-08-31",
+        "publisher": {
+          "name": "Macmillan Audio"
+        },
+        "language": {
+          "code2": "en",
+          "code3": "eng",
+          "language": "English"
+        },
+        "image": null,
+        "contributions": [
+          {
+            "contribution": "Narrator",
+            "author": {
+              "id": 51001,
+              "name": "Michael Kramer",
+              "image": null
+            }
+          },
+          {
+            "contribution": "Narrator",
+            "author": {
+              "id": 51002,
+              "name": "Kate Reading",
+              "image": null
+            }
+          }
+        ]
+      },
+      "default_cover_edition": {
+        "id": 771002,
+        "isbn_10": "0765326353",
+        "isbn_13": "9780765326355",
+        "asin": null,
+        "edition_format": "Hardcover",
+        "physical_format": "Hardcover",
+        "pages": 1007,
+        "audio_seconds": null,
+        "release_date": "2010-08-31",
+        "publisher": {
+          "name": "Tor Books"
+        },
+        "language": {
+          "code2": "en",
+          "code3": "eng",
+          "language": "English"
+        },
+        "image": null,
+        "contributions": []
+      },
+      "editions": [
+        {
+          "id": 771010,
+          "isbn_10": "8498726360",
+          "isbn_13": "9788498726367",
+          "asin": null,
+          "edition_format": "Paperback",
+          "physical_format": "Paperback",
+          "pages": 1200,
+          "audio_seconds": null,
+          "release_date": "2011-06-01",
+          "publisher": {
+            "name": "Ediciones B"
+          },
+          "language": {
+            "code2": "es",
+            "code3": "spa",
+            "language": "Spanish"
+          },
+          "image": null,
+          "contributions": [
+            {
+              "contribution": "Translator",
+              "author": {
+                "id": 60001,
+                "name": "Rafael Marin",
+                "image": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
