@@ -34,6 +34,35 @@ func (c *Client) Search(ctx context.Context, query metadata.SearchQuery) ([]meta
 		return nil, nil
 	}
 
+	hits, err := c.searchOnce(ctx, text)
+	if err != nil {
+		return nil, err
+	}
+
+	// Silo has no author field in the plugin search contract, so it appends
+	// the author to the title and sends one string. Hardcover's index weights
+	// the title far above the author name, which pushes summaries, samplers
+	// and box sets whose *titles* carry the author's name above the book
+	// itself: "Dune Frank Herbert" returns the novel twentieth. Recover the
+	// title by finding an author from these hits at the end of the query, then
+	// search again for the title alone.
+	effective := query
+	if title, author, ok := splitAuthorSuffix(text, hits); ok {
+		effective.Title = title
+		effective.Authors = append(append([]string(nil), query.Authors...), author)
+
+		byTitle, err := c.searchOnce(ctx, title)
+		if err != nil {
+			return nil, err
+		}
+		hits = mergeBooks(byTitle, hits)
+	}
+
+	return rankBooks(hits, effective), nil
+}
+
+// searchOnce runs one Typesense search and maps its hits.
+func (c *Client) searchOnce(ctx context.Context, text string) ([]metadata.Book, error) {
 	var response struct {
 		Search *struct {
 			IDs     []int           `json:"ids"`
@@ -49,8 +78,57 @@ func (c *Client) Search(ctx context.Context, query metadata.SearchQuery) ([]meta
 	if response.Search == nil {
 		return nil, nil
 	}
+	return booksFromSearchResults(response.Search.Results, response.Search.IDs), nil
+}
 
-	return rankBooks(booksFromSearchResults(response.Search.Results, response.Search.IDs), query), nil
+// mergeBooks concatenates two hit lists, keeping the first occurrence of each
+// book so the leading list's ranking is preserved.
+func mergeBooks(first, second []metadata.Book) []metadata.Book {
+	merged := make([]metadata.Book, 0, len(first)+len(second))
+	seen := make(map[string]struct{}, len(first)+len(second))
+	for _, list := range [][]metadata.Book{first, second} {
+		for _, book := range list {
+			if _, ok := seen[book.ID]; ok {
+				continue
+			}
+			seen[book.ID] = struct{}{}
+			merged = append(merged, book)
+		}
+	}
+	return merged
+}
+
+// splitAuthorSuffix reports the title and author hidden in a "Title Author"
+// query. An author is only believed when a book in the hits is credited to
+// exactly that name and the name sits at the end of the query, so a title that
+// merely ends in a person's name is not truncated without evidence. The
+// longest such name wins, so "Ursula K. Le Guin" beats "Guin".
+func splitAuthorSuffix(text string, hits []metadata.Book) (string, string, bool) {
+	normalizedQuery := normalizeTitle(text)
+	if normalizedQuery == "" {
+		return "", "", false
+	}
+
+	bestTitle, bestAuthor := "", ""
+	for _, hit := range hits {
+		for _, contributor := range hit.Contributors {
+			name := normalizeTitle(contributor.Name)
+			if name == "" || len(name) <= len(bestAuthor) {
+				continue
+			}
+			prefix, ok := strings.CutSuffix(normalizedQuery, " "+name)
+			// A query that is only the author's name leaves no title, and a
+			// suffix that is the whole query means the two are the same.
+			if !ok || strings.TrimSpace(prefix) == "" {
+				continue
+			}
+			bestTitle, bestAuthor = strings.TrimSpace(prefix), name
+		}
+	}
+	if bestAuthor == "" {
+		return "", "", false
+	}
+	return bestTitle, bestAuthor, true
 }
 
 // SearchDetailed runs Search and then refetches each hit through the book
@@ -141,7 +219,8 @@ func rankBooks(books []metadata.Book, query metadata.SearchQuery) []metadata.Boo
 	scores := make(map[string]int, len(scored))
 	for index, book := range scored {
 		score := 0
-		switch candidate := normalizeTitle(book.Title); {
+		candidate := normalizeTitle(book.Title)
+		switch {
 		case title == "":
 		case candidate == title:
 			score += 100
@@ -155,6 +234,12 @@ func rankBooks(books []metadata.Book, query metadata.SearchQuery) []metadata.Boo
 		}
 		if query.Year > 0 && book.PublishYear == query.Year {
 			score += 25
+		}
+		// A search for a novel returns its study guides, summaries, samplers
+		// and omnibus editions alongside it, and their longer titles often
+		// outrank it. Penalise them unless the query asked for one.
+		if isDerivativeTitle(candidate) && !isDerivativeTitle(title) {
+			score -= 70
 		}
 		// Hardcover's own order is the tie-break, so an unscored list comes
 		// back exactly as the index ranked it.
@@ -187,6 +272,30 @@ func normalizeTitle(value string) string {
 		}
 	}
 	return strings.Join(fields, " ")
+}
+
+// derivativeMarkers name the kinds of book a catalog search returns alongside
+// the novel that was asked for: works *about* it, and editions that bundle it
+// with others. Each is a real book someone may own, so these only lower a
+// candidate's rank; a query naming one still finds it.
+var derivativeMarkers = []string{
+	"summary", "summaries", "study guide", "studyguide", "book guide",
+	"analysis of", "companion", "sampler", "essays on", "reading order",
+	"boxed set", "box set", "omnibus", "collection", "trilogy", "saga",
+	"anthology", "graphic novel", "dramatized adaptation",
+	"dramatised adaptation", "notebooks of", "annotated",
+}
+
+func isDerivativeTitle(normalized string) bool {
+	if normalized == "" {
+		return false
+	}
+	for _, marker := range derivativeMarkers {
+		if strings.Contains(normalized, marker) {
+			return true
+		}
+	}
+	return false
 }
 
 func matchesAnyAuthor(book metadata.Book, authors []string) bool {
