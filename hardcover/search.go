@@ -8,7 +8,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/totza2010/silo-plugin-metadata-hardcover/metadata"
+	"github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/metadata"
 )
 
 // Search resolves a query to Hardcover books. Identifiers in the query are

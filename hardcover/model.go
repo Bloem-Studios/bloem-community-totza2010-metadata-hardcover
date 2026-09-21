@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/totza2010/silo-plugin-metadata-hardcover/metadata"
+	"github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/metadata"
 )
 
 // book mirrors the BookFields fragment.

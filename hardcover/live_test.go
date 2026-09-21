@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/totza2010/silo-plugin-metadata-hardcover/metadata"
+	"github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/metadata"
 )
 
 // liveClient builds a client against the real Hardcover API. Every test in

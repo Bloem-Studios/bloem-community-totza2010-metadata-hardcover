@@ -1,3 +1,12 @@
+## Bloem community build
+
+This is Bloem's community build of [totza2010/silo-plugin-metadata-hardcover](https://github.com/totza2010/silo-plugin-metadata-hardcover) by **totza2010**
+(contributors: totza2010). It is ported to the Bloem plugin SDK and listed in the
+Bloem community plugin catalog. All credit for the plugin goes to its author; please
+report plugin behavior issues upstream. See [NOTICE](NOTICE) for provenance.
+
+---
+
 # Silo Hardcover Metadata Plugin
 
 A single-source metadata provider for [Silo](https://github.com/Silo-Server/silo-server)

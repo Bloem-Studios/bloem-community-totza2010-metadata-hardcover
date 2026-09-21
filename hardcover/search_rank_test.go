@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/totza2010/silo-plugin-metadata-hardcover/metadata"
+	"github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/metadata"
 )
 
 // foldedSearchHandler models what Hardcover returns for the two queries the

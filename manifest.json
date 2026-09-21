@@ -6,12 +6,12 @@
   "presentation": {
     "display_name": "Hardcover Metadata",
     "summary": "Book metadata from Hardcover: authors, series, covers, publishers, and genres from one source.",
-    "description_markdown": "Enriches ebook and audiobook libraries from [Hardcover](https://hardcover.app) alone. One lookup returns the title and subtitle, authors and other contributors, the series name and position, the release date, the cover, the publisher, the language, the ISBNs, the page count, and Hardcover's genres, moods, tags, content warnings, and rating.\n\nSearches run against Hardcover's own search index, so a title, an author, or an ISBN all resolve. Existing items are matched by Hardcover ID, slug, ISBN-13, ISBN-10, or ASIN.\n\nRequires a free Hardcover account and an API token.",
+    "description_markdown": "Enriches ebook and audiobook libraries from [Hardcover](https://hardcover.app) alone. One lookup returns the title and subtitle, authors and other contributors, the series name and position, the release date, the cover, the publisher, the language, the ISBNs, the page count, and Hardcover's genres, moods, tags, content warnings, and rating.\n\nSearches run against Hardcover's own search index, so a title, an author, or an ISBN all resolve. Existing items are matched by Hardcover ID, slug, ISBN-13, ISBN-10, or ASIN.\n\nRequires a free Hardcover account and an API token.\n\nCommunity plugin by totza2010 (https://github.com/totza2010/silo-plugin-metadata-hardcover), built for Bloem on the Bloem plugin SDK.",
     "setup_markdown": "1. Sign in at [hardcover.app](https://hardcover.app) and open **Account settings → Hardcover API**.\n2. Create a new API key and copy the token.\n3. Paste it into **API token** below.\n4. Add **Hardcover Metadata** to an ebook or audiobook library's metadata provider chain.\n\nThe plugin makes no requests until a token is set. Hardcover's free plan allows 60 requests per minute and 5,000 per day; the plugin paces itself to stay inside that.",
     "homepage_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover",
-    "source_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover",
-    "support_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover/issues",
-    "changelog_url": "https://github.com/totza2010/silo-plugin-metadata-hardcover/releases",
+    "source_url": "https://github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover",
+    "support_url": "https://github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/issues",
+    "changelog_url": "https://github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/releases",
     "publisher_name": "totza2010",
     "publisher_url": "https://github.com/totza2010",
     "license_spdx": "Apache-2.0"

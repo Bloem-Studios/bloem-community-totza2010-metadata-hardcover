@@ -3,9 +3,9 @@ package main
 import (
 	"testing"
 
-	pluginv1 "github.com/Silo-Server/silo-plugin-sdk/pkg/pluginproto/silo/plugin/v1"
-	sdkmanifest "github.com/Silo-Server/silo-plugin-sdk/pkg/pluginsdk/manifest"
-	"github.com/totza2010/silo-plugin-metadata-hardcover/metadata"
+	pluginv1 "github.com/Bloem-Studios/bloem-plugin-sdk/pkg/pluginproto/silo/plugin/v1"
+	sdkmanifest "github.com/Bloem-Studios/bloem-plugin-sdk/pkg/pluginsdk/manifest"
+	"github.com/Bloem-Studios/bloem-community-totza2010-metadata-hardcover/metadata"
 	"google.golang.org/protobuf/types/known/structpb"
 )
 
